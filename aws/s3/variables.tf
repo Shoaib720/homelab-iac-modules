@@ -3,5 +3,6 @@ variable name {
 }
 
 variable tags {
-    type = optional(map(string))
+    type = map(string)
+    default = null
 }
