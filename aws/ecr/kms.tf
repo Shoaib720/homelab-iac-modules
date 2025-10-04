@@ -1,5 +1,4 @@
 resource "aws_kms_key" "kms" {
-  count = var.configs.global.kms_encryption != null ? 1 : 0
   description             = "Key for ECR"
   enable_key_rotation     = var.configs.global.kms_encryption.enable_key_rotation
   deletion_window_in_days = var.configs.global.kms_encryption.deletion_window_in_days

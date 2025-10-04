@@ -3,11 +3,11 @@ variable "configs" {
     global = object({
       prefix = string
       environment = string
-      kms_encryption = optional(object({
+      kms_encryption = object({
         key_alias = string
         enable_key_rotation = bool
         deletion_window_in_days = number
-      }))
+      })
       tags = optional(map(string))
     })
     repositories = list(object({

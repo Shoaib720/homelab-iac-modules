@@ -19,12 +19,9 @@ resource "aws_ecr_repository" "ecr" {
         }
     }
 
-    dynamic "encryption_configuration" {
-        count = var.configs.global.kms_encryption != null ? 1 : 0
-        content {
-            encryption_type = "KMS"
-            kms_key = aws_kms_key.kms.arn
-        }
+    encryption_configuration {
+        encryption_type = "KMS"
+        kms_key = aws_kms_key.kms.arn
     }
 
     tags = try(var.configs.global.tags, {})
