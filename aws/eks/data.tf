@@ -21,6 +21,6 @@ data "aws_iam_policy_document" "example_assume_role_policy" {
 }
 
 
-# data "aws_kms_key" "by_alias" {
-#   key_id = var.vault_unseal_kms_key_alias
-# }
+data "aws_kms_key" "ecr_encryption_key" {
+  key_id = var.ecr_encryption_key_alias
+}

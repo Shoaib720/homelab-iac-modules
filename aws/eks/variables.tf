@@ -29,6 +29,6 @@ variable "node_configs" {
 #   type = string
 # }
 
-variable "ecr_kms_key_id" {
+variable "ecr_encryption_key_alias" {
   type = string
 }

@@ -41,9 +41,9 @@ resource "aws_default_route_table" "default_rt" {
 
   route = []
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.name}-main-rt"
-  }
+  })
 }
 
 resource "aws_route" "internet_route" {
