@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "ecr" {
     for_each = { for idx, cfg in var.configs.repositories : "${cfg.name}" => cfg }
-    name                 = each.key
+    name                 = "${var.configs.global.prefix}-${each.key}-${var.configs.global.environment}"
     image_tag_mutability = each.value.image_tag_mutability
 
     image_scanning_configuration {
@@ -19,10 +19,13 @@ resource "aws_ecr_repository" "ecr" {
         }
     }
 
-    encryption_configuration {
-        encryption_type = "KMS"
-        kms_key = aws_kms_key.kms.arn
+    dynamic "encryption_configuration" {
+        count = var.configs.global.kms_encryption != null ? 1 : 0
+        content {
+            encryption_type = "KMS"
+            kms_key = aws_kms_key.kms.arn
+        }
     }
 
-    tags = try(var.configs.tags, {})
+    tags = try(var.configs.global.tags, {})
 }
