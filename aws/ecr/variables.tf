@@ -2,7 +2,6 @@ variable "configs" {
   type = object({
     global = object({
       prefix = string
-      environment = string
       kms_encryption = object({
         key_alias = string
         enable_key_rotation = bool

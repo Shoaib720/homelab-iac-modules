@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "ecr" {
     for_each = { for idx, cfg in var.configs.repositories : "${cfg.name}" => cfg }
-    name                 = "${var.configs.global.prefix}-${each.key}-${var.configs.global.environment}"
+    name                 = "${var.configs.global.prefix}-${each.key}"
     image_tag_mutability = each.value.image_tag_mutability
 
     image_scanning_configuration {

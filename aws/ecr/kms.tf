@@ -6,6 +6,6 @@ resource "aws_kms_key" "kms" {
 }
 
 resource "aws_kms_alias" "alias" {
-  name          = "alias/${var.configs.global.prefix}-${var.configs.global.kms_encryption.key_alias}-${var.configs.global.environment}"
+  name          = "alias/${var.configs.global.prefix}-${var.configs.global.kms_encryption.key_alias}"
   target_key_id = aws_kms_key.kms.key_id
 }
