@@ -7,6 +7,6 @@ output "db_username" {
 }
 
 output "db_password" {
-  value     = random_password.postgres.result
+  value     = aws_db_instance.postgres.password
   sensitive = true
 }
