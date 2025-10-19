@@ -45,7 +45,7 @@ resource "aws_db_instance" "postgres" {
   final_snapshot_identifier  = "${var.rds_instance_name}-final-${formatdate("YYYYMMDDhhmmss", timestamp())}"
 
   # Restore automatically from last snapshot if available
-  snapshot_identifier        = try(data.aws_db_snapshot.latest_snapshot.id, null)
+  snapshot_identifier        = try(data.aws_db_snapshot.latest_snapshot[0].id, null)
 
   backup_retention_period    = 0
   storage_encrypted          = true
