@@ -4,6 +4,8 @@ variable subnet_ids { type = list(string) }
 
 variable vpc_address_cidr { type = string }
 
+variable vpc_id { type = string }
+
 variable rds_engine_version {
     default = "17.6"
 }
