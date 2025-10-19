@@ -51,7 +51,6 @@ resource "aws_db_instance" "postgres" {
   storage_encrypted          = true
   auto_minor_version_upgrade = true
   multi_az                   = false
-  deletion_window_in_days    = 0
 
   tags = merge(var.tags, {
     Name = "${var.rds_instance_name}"
