@@ -6,7 +6,6 @@ resource "aws_key_pair" "kp" {
 
 resource "aws_security_group" "sg" {
   name        = "sg_${var.configs.name}"
-  description = "Allow SSH access"
 
   dynamic "ingress" {
     for_each = var.configs.ingress_rules
