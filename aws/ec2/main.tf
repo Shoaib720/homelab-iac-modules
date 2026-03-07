@@ -6,6 +6,7 @@ resource "aws_key_pair" "kp" {
 
 resource "aws_security_group" "sg" {
   name        = "sg_${var.configs.name}"
+  vpc_id = var.configs.vpc_id
 
   dynamic "ingress" {
     for_each = var.configs.ingress_rules
@@ -31,6 +32,6 @@ resource "aws_instance" "ec2_instance" {
   instance_type   = var.configs.instance_type
   key_name        = aws_key_pair.lab_key.key_name
   security_groups = [aws_security_group.sg.name]
-
+  subnet_id = var.configs.subnet_id
   tags = try(var.configs.tags, {})
 }
